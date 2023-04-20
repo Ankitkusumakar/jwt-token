@@ -12,4 +12,5 @@ module JsonWebToken
 		decode = JWT.decode(token, SECRET_KEY)[0]
 		HashWithIndifferentAccess.new decode
 	end
+	#hello word
 end
