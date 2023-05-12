@@ -31,6 +31,11 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'faker', '~> 2.16'
+  gem "factory_bot_rails"
+  gem 'rspec-sonarqube-formatter', '~> 1.5', require: false
+  gem 'shoulda-matchers', '~> 4.0'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -54,3 +59,12 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jwt', '~> 1.5', '>= 1.5.4'
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
+gem 'kaminari'
+gem 'money'
+gem 'rest-client', '~> 1.8'
+gem 'russian_central_bank'
+gem 'eu_central_bank'
+gem 'twilio-ruby'
+gem 'ruby-openai'
+gem 'openai'
+gem 'httparty'

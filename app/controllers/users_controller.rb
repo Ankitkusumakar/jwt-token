@@ -18,14 +18,14 @@ class UsersController < ApplicationController
 		if @user.save
 			render json: @user, status: :created
 		else
-			render json: { errors: @user.error.full_massages},
+			render json: { errors: @user.errors.full_messages},
 			status: :unprocessable_entity
 		end
 	end
 
 	def update
 		unless @user.update(user_params)
-			render json: { errors: @user.error.full_massages},
+			render json: { errors: @user.errors.full_massages},
 			status: :unprocessable_entity
 		end
 	end
