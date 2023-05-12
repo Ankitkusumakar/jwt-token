@@ -53,7 +53,7 @@ class SpendController < ApplicationController
 
 	def destroy
 		@spend.destroy
-		render json: { mes @logo_design = LogoDesign.update(filesize:filesize, filename:filename, account_id:@current_user.id,)sage: "spend deleted successfully"}, status: :ok
+		render json: { message: "spend deleted successfully"}, status: :ok
 	end
 
 	private
