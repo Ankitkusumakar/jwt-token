@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   #----------currency/convertor--------
   get 'currency/convertor'
 
 #----------jwt---------
   resources :users
+  get "verify_otp", to: "users#verify_otp"
+
   post '/auth/login', to: 'authentication#login'
   
   #------language routes----------------

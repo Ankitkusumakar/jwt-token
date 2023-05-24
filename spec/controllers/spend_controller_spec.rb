@@ -71,7 +71,6 @@ RSpec.describe "SpendController", type: :controller do
       it "returns errors" do
         post :create, params: {}
         data = JSON.parse(response.body)
-        byebug
         expect(data.count).to eq(8)
         expect(data["name"]).to eq(nil)
         expect(data["account_id"]).to eq(nil)
