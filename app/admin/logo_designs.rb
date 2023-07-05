@@ -1,4 +1,5 @@
 ActiveAdmin.register LogoDesign do
+  
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -16,7 +17,10 @@ ActiveAdmin.register LogoDesign do
     column :account_id
     column :logo do |model|
       if model.logo.attached?
-        link_to image_tag(model.logo,size: '100x100'), admin_logo_designs_path(model)
+        link_to image_tag(model.logo,size: '100x100'), admin_logo_designs_path(model, format: :html)
+        # link_to image_tag(model.logo, size: '100x100'), admin_logo_designs_path(format: :html, model_id: model)
+        # link_to 'Download Image', admin_logo_designs_path(model)
+        # link_to 'Download Image', admin_logo_designs_path(format: :html, model_id: model.id)
       else
         'No logo available'
       end

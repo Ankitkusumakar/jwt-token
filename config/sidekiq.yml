@@ -1,0 +1,15 @@
+2023-06-05T08:53:43.781Z pid=10687 tid=gtlz8t7ub INFO: sidekiq [options]
+    -c, --concurrency INT            processor threads to use
+    -d, --daemon                     Daemonize process
+    -e, --environment ENV            Application environment
+    -g, --tag TAG                    Process tag for procline
+    -q, --queue QUEUE[,WEIGHT]       Queues to process with optional weights
+    -r, --require [PATH|DIR]         Location of Rails application with jobs or file to require
+    -t, --timeout NUM                Shutdown timeout
+    -v, --verbose                    Print more verbose output
+    -C, --config PATH                path to YAML config file
+    -L, --logfile PATH               path to writable logfile
+    -P, --pidfile PATH               path to pidfile
+    -V, --version                    Print version and exit
+    -h, --help                       Show help
+

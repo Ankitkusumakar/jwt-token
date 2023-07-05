@@ -17,5 +17,7 @@ module Language
     # the framework and any gems in your application.
     config.i18n.default_locale = :en
     config.autoload_paths += %W(#{config.root}/app/services)
+    config.active_job.queue_adapter = Rails.env.production? ? :sidekiq : :async
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_23_092614) do
+ActiveRecord::Schema.define(version: 2023_06_23_095603) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -59,6 +59,17 @@ ActiveRecord::Schema.define(version: 2023_05_23_092614) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string "data_file_name", null: false
+    t.string "data_content_type"
+    t.integer "data_file_size"
+    t.string "data_fingerprint"
+    t.string "type", limit: 30
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type"], name: "index_ckeditor_assets_on_type"
+  end
+
   create_table "langs", force: :cascade do |t|
     t.string "name"
     t.string "abbreviation"
@@ -76,9 +87,31 @@ ActiveRecord::Schema.define(version: 2023_05_23_092614) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "user_id"
+    t.float "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "question_answers", force: :cascade do |t|
     t.string "question"
     t.string "answer"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "referrals", force: :cascade do |t|
+    t.integer "referrer_id"
+    t.integer "referred_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -111,10 +144,14 @@ ActiveRecord::Schema.define(version: 2023_05_23_092614) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "otp_code"
     t.boolean "activated", default: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.string "referral_code"
     t.index ["otp_code"], name: "index_users_on_otp_code"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "messages", "users"
   add_foreign_key "user_langs", "langs"
   add_foreign_key "user_langs", "users"
 end

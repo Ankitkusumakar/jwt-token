@@ -72,4 +72,8 @@ Rails.application.configure do
   enable_starttls_auto: true
 
   }
+#   # to be appraised of mailing errors
+# config.action_mailer.raise_delivery_errors = true
+# # to deliver to the browser instead of email
+# config.action_mailer.delivery_method = :letter_opener
 end

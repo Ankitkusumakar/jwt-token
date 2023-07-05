@@ -9,6 +9,9 @@ ActiveAdmin.register_page "Dashboard" do
         small I18n.t("active_admin.dashboard_welcome.call_to_action")
       end
     end
+    content do
+      render partial: 'dashboard'
+    end
 
     # Here is an example of a simple dashboard with columns and panels.
     #
@@ -29,5 +32,19 @@ ActiveAdmin.register_page "Dashboard" do
     #     end
     #   end
     # end
+    # columns do
+    #   column do
+    #     panel "Fundraisers Count " do
+    #       pie_chart [["Active Fundraisers", 33.33], ["Ended Fundraisers", 33.33],["Canceled Fundraisers", 33.33]] 
+    #     end
+    #   end  
+    # end 
+    columns do
+      column do    
+        panel "Subject Count by email " do   
+          pie_chart User.group(:email ).count
+        end
+      end
+    end
   end # content
 end

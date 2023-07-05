@@ -1,0 +1,14 @@
+<h1>Set New Password?</h1>
+
+<%= form_with url:  passwords_reset_url(token: params[:token]) do |f| %>
+
+  <div class="mt-3">
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="mt-3">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %><br />
+    <%= f.submit "Reset passwords", class: "btn btn-primary mt-3" %>
+  </div>
+<% end %>

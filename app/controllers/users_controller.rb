@@ -1,7 +1,11 @@
+require "rqrcode"
+require 'rqrcode_png'
 class UsersController < ApplicationController
-  before_action :authenticate_request, except: [:create]
+  before_action :authenticate_request, except: [:create, :generate_qr_code]
 	before_action :set_user, only: [:show, :destroy]
 	skip_before_action :verify_authenticity_token
+	after_action :generate_qr_code, only: [:create]
+
 
 
 	def index
@@ -16,9 +20,10 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		otp = SecureRandom.random_number(100_000..999_999).to_s
+		@user.refer(params[:referral_code]) if params[:referral_code].present?
 		if @user.save
 			@user.update(otp_code: otp)
-			CrudNotificationMailer.create_notification(@user).deliver_now
+			# CrudNotificationMailer.create_notification(@user).deliver_now
 			render json: @user, status: :created
 		else
 			render json: { errors: @user.errors.full_messages},
@@ -53,9 +58,26 @@ class UsersController < ApplicationController
 		end
   end
 
+	def generate_qr_code
+		qrcode = RQRCode::QRCode.new("https://facebook.com")
+
+		# Output the QR code as a PNG image
+		png = qrcode.as_png(
+			resize_exactly_to: 300,
+			border_modules: 4,
+			module_px_size: 6,
+			fill: 'black',
+			color: 'white'
+		)
+
+		# Save the QR code image to a file
+		png.save('qrcode.png')
+		# CrudNotificationMailer.qrcode_notification(qrcode, @user).deliver_now
+	end
+ 
 	private
 	def user_params
-		params.permit(:username, :email, :password)
+		params.permit(:username, :email, :password, :referral_code)
 	end
 
 	def set_user

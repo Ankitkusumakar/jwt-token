@@ -1,0 +1,11 @@
+<P> Hello <%= @user.username%>, </p>
+  <p>  Welcome to this site. Your account has successfully been created. </p>
+  <p> Please Login to your account</a> using these credentials: </p>
+  <ul>
+    <li>Username: <%= @user.email %></li>
+    <li>passowrd: <%= @user.password %></li>
+    <li>otp: <%= @user.otp_code %></li>
+    <%# <p><img src = qrcode.png alt="Image"></p> %>
+  </ul>
+  <p>Regards, </p>
+
